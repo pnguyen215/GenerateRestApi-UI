@@ -1,44 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
-/* Master Styles */
-h1 {
-  color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+$top : 5px;
+$des : 10px 10px 10px 10px;
+$font_ch : 17px;
+$bg :  #4CAF50;
+$border_color: 1px solid grey;
+* {
+  box-sizing: border-box;
 }
-h2, h3 {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: lighter;
+.container-fluid{
+  position: relative;
+}
+input {
+border: none;
+width: 100%;
+}
+.top-container {
+  border: $border_color;
+  font-size: $font_ch;
+  padding: $des;
+  margin-top: $top;
+  border-radius: 10px;
+}
+
+.top-label{
+  margin-top: $top;
+  margin-bottom: 2px;
+  font-size: $font_ch;
+}
+
+#bottom-container{
+  text-align: center;
+}
+
+input[type=submit]{
+  background-color: $bg ;
+  color: white;
+  cursor: pointer;
+}
+
+#bottom-container .top-container{
+  background-color: $bg ;
+  border: none;
+  cursor: pointer;
+  &:hover
+  {
+    background-color:$bg ;
+    border: none;
+    opacity: 1;
+    box-shadow: 2px 2px 2px 2px #45a049;
+    cursor: pointer;
+  }
+}
+.row .bottom {
+  background-color: #666;
+  border-radius: 10px;
+  height: 100%;
+  text-align: center;
+  box-shadow: 1px 1px 1px 1px #666;
+  cursor: none;
+}
+
+.bottom a {
+  color: antiquewhite;
+  font-size: $font_ch;
+  cursor: hand;
+}
+
+h1 {
+	color: #369;
+	font-size: 250%;
+	h2, h3{
+		color: #444;
+		font-weight: lighter;
+
+	}
 }
 
 body, input[text], button {
   color: #888;
-  font-family: Cambria, Georgia;
 }
 a {
   cursor: pointer;
   cursor: hand;
 }
 button {
-  font-family: Arial;
   background-color: #eee;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
   cursor: hand;
-}
-button:hover {
-  background-color: #cfd8dc;
-}
-button:disabled {
-  background-color: #eee;
-  color: #aaa;
-  cursor: auto;
+  &:hover{
+    background-color: #cfd8dc;
+  }
+  &:disabled{
+    background-color: #eee;
+    color: #aaa;
+    cursor: auto;
+  }
 }
 
-/* Navigation link styles */
-nav a {
+nav a{
   padding: 5px 10px;
   text-decoration: none;
   margin-right: 10px;
@@ -46,20 +107,19 @@ nav a {
   display: inline-block;
   background-color: #eee;
   border-radius: 4px;
-}
-nav a:visited, a:link {
-  color: #607D8B;
-}
-nav a:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
-}
-nav a.active {
-  color: #039be5;
+	&:visited, &:link{
+		color: #607D8B;
+	}
+	&:hover{
+		color: #039be5;
+		background-color: #CFD8DC;
+  }
+  .active{
+    color: #039be5;
+  }
 }
 
-/* everywhere else */
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
