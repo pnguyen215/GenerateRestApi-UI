@@ -7,9 +7,18 @@ import { HttpClient, HttpHeaders } from '@angular/common//http';
 const httpOption = {
   headers: new HttpHeaders({'Content-Type' : 'application/json'})
 };
+
+
 @Injectable()
 export class SignupService {
-  private url = 'http://cscvieae528129:3000/registration';
+  private url = '/v1/controllers';
+  getInfo(): Observable<SignUp[]>{
+    return this.http.get<SignUp[]>(this.url,httpOption).pipe(
+      tap((info) => console.log[`infomation user = ${JSON.stringify(info)}`]),
+      
+    )
+  }
+
   addUser(newUser: SignUp): Observable<SignUp>{
     return this.http.post<SignUp>(this.url, newUser, httpOption).pipe(
       tap((user: SignUp) => console.log[`inserted user = ${JSON.stringify(user)}`]),
