@@ -1,0 +1,6 @@
+{
+  "/v1/controllers/*": {
+    "target": "http://localhost:8080//restController",
+    "secure": false
+  }
+}
