@@ -1,6 +1,6 @@
 {
-  "/user/*": {
-    "target": "http://localhost:8080",
+  "/user/registration": {
+    "target": "http://localhost:8080/restController",
     "secure": false
   }
 }

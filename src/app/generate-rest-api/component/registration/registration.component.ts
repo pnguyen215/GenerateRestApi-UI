@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignUp } from '../../model/signup';
+import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import  { SignupService } from '../../service/signup.service';
 @Component({
@@ -8,7 +8,7 @@ import  { SignupService } from '../../service/signup.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  user: SignUp = new SignUp();
+  user: User = new User();
   constructor(
     private router: Router, private signupService : SignupService
   ) { }
@@ -18,8 +18,11 @@ export class RegistrationComponent implements OnInit {
   createUser(): void {
     this.signupService.createUser(this.user)
         .subscribe( data => {
-          alert("User created successfully.");
-        });
+          console.log("User created successfully.");
+        },(err) => {
+          console.log(err);
+        } 
+      );
 
   };
   }

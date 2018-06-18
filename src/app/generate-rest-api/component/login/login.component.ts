@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import  { SignupService } from '../../service/signup.service';
-import { SignUp } from '../../model/signup';
+import { User } from '../../model/user';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  user : SignUp[];
+  user : User[];
 
   constructor(
     private router: Router, private signupService: SignupService
@@ -18,7 +18,15 @@ export class LoginComponent implements OnInit {
     this.signupService.getUsers()
       .subscribe( data => {
         this.user = data;
+       
       });
   };
+  login(): void{
+    this.signupService.getUsers()
+      .subscribe( data => {
+        // this.user = data;
+        alert("Login successfully!");
+      });
+  }
 
 }

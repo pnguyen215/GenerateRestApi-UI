@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { SignUp } from '../model/signup';
+import { User } from '../model/user';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/Observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Headers, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common//http';
+import { environment } from '../../../environments/environment';
 const httpOption = {
   headers: new HttpHeaders({'Content-Type' : 'application/json'})
 };
@@ -12,18 +13,18 @@ const httpOption = {
 
 @Injectable()
 export class SignupService {
-  private apiUrl = '/user/registration';
+  private apiUrl = environment.serverUrl + '/user/registration';
   constructor(
     private http:  HttpClient
   ) { }
-  public getUsers<SignUp>(): Observable<any>{
-    return this.http.get<SignUp>(this.apiUrl);
+  public getUsers<User>(): Observable<any>{
+    return this.http.get<User>(this.apiUrl);
   }
-  public getSingleUser<SignUp>(password: SignUp): Observable<any>{
-    return this.http.get<SignUp>(this.apiUrl + password);
+  public getSingleUser<User>(password: User): Observable<any>{
+    return this.http.get<User>(this.apiUrl + password);
   }
-  public createUser<SignUp>(user): Observable<any>{
-    return this.http.post<SignUp>(this.apiUrl,httpOption, user);
+  public createUser<User>(user): Observable<any>{
+    return this.http.post<User>(this.apiUrl, user, httpOption);
   }
 
 }
