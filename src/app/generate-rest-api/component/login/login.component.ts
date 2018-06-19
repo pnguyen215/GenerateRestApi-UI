@@ -9,24 +9,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user : User[];
-
   constructor(
     private router: Router, private signupService: SignupService
   ) { }
 
   ngOnInit() {
-    this.signupService.getUsers()
-      .subscribe( data => {
-        this.user = data;
+    // this.signupService.getUsers()
+    //   .subscribe( data => {
+    //     this.user = data;
        
-      });
+    //   });
   };
-  login(): void{
-    this.signupService.getUsers()
-      .subscribe( data => {
-        // this.user = data;
-        alert("Login successfully!");
-      });
-  }
+
 
 }

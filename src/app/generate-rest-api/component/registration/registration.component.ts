@@ -8,7 +8,7 @@ import  { SignupService } from '../../service/signup.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  user: User = new User();
+  user : User = new User();
   constructor(
     private router: Router, private signupService : SignupService
   ) { }

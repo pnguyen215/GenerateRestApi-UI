@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import  { SignupService } from './generate-rest-api/service/signup.service';
 import { AppComponent } from './app.component';
 import { GenerateRestApiRoutingModule } from './generate-rest-api/generate-rest-api-routing.module';
@@ -10,7 +10,7 @@ import { RegistrationComponent } from './generate-rest-api/component/registratio
 import { NavbarComponent } from './generate-rest-api/component/navbar/navbar.component';
 import { SummaryComponent } from './generate-rest-api/component/summary/summary.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule, Routes } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     GenerateRestApiRoutingModule,
     GenerateRestApiModule,
     HttpClientModule,
-    
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+
   ],
   providers: [SignupService],
   bootstrap: [AppComponent]
