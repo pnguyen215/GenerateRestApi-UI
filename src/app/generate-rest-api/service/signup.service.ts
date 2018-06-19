@@ -17,14 +17,14 @@ export class SignupService {
   constructor(
     private http:  HttpClient
   ) { }
-  public getUsers<User>(): Observable<any>{
-    return this.http.get<User>(this.apiUrl);
+  public getUsers(): Observable<any>{
+    return this.http.get(this.apiUrl);
   }
-  public getSingleUser<User>(password: User): Observable<any>{
-    return this.http.get<User>(this.apiUrl + password);
+  public getSingleUser(password: User): Observable<any>{
+    return this.http.get(this.apiUrl + password);
   }
-  public createUser<User>(user): Observable<any>{
-    return this.http.post<User>(this.apiUrl, user, httpOption);
+  public createUser(user): Observable<any>{
+    return this.http.post(this.apiUrl, user, httpOption);
   }
 
 }
