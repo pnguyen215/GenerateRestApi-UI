@@ -5,9 +5,9 @@ import { LoginComponent } from '../generate-rest-api/component/login/login.compo
 import { RegistrationComponent } from '../generate-rest-api/component/registration/registration.component';
 import { SummaryComponent } from '../generate-rest-api/component/summary/summary.component';
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
-  {path: 'summary', component: SummaryComponent}
+  {path: 'user/login', component: LoginComponent},
+  {path: 'user/registration', component: RegistrationComponent},
+
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,5 @@
-export class SignUp {
+export class User {
     username : string;
     password : string;
-    re_password : string;
 
 }
