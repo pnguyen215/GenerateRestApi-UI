@@ -24,6 +24,7 @@ export class SignupService {
     return this.http.get(this.apiUrl + password);
   }
   public createUser(user): Observable<any>{
+
     return this.http.post(this.apiUrl, user);
   }
 
