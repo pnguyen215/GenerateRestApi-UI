@@ -5,13 +5,14 @@ import { LoginComponent } from '../generate-rest-api/component/login/login.compo
 import { RegistrationComponent } from '../generate-rest-api/component/registration/registration.component';
 import { SummaryComponent } from '../generate-rest-api/component/summary/summary.component';
 const routes: Routes = [
-  {path: 'user/login', component: LoginComponent},
-  {path: 'user/registration', component: RegistrationComponent},
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
 
 ]
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true } )],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+  exports: [RouterModule]
 
 })
 export class GenerateRestApiRoutingModule { }
