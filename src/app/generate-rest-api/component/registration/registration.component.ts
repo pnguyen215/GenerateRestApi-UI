@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import { SignupService } from '../../service/signup.service';
+import { MessageObject } from '../../model/MessageObject';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -18,12 +19,13 @@ export class RegistrationComponent implements OnInit {
   createUser(): void {
     this.signupService.createUser(this.user)
       .subscribe(data => {
-        //console.log("User created successfully.");
-        if (data == "Good") {
+        const res = data as MessageObject;
+        if (res) {
+          alert("Account available: " + res.data)
           this._route.navigate(['/login']);
         }
         else {
-          alert("Account not available")
+          alert("Technical issue")
         }
       });
   }
