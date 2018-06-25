@@ -17,6 +17,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
   createUser(): void {
+    const user: User = new User();
     this.signupService.createUser(this.user)
       .subscribe(data => {
         const res = data as MessageObject;

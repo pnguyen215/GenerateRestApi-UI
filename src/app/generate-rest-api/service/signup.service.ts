@@ -14,18 +14,16 @@ const httpOption = {
 
 @Injectable()
 export class SignupService {
-  private apiUrl = 'http://localhost:8080/restController/v1/user';
+  private apiUrl = environment.serverURL + 'v1/user';
   constructor(
     private http: HttpClient
   ) { }
-  public getUsers(): Observable<any> {
-    return this.http.get(this.apiUrl);
-  }
-  public getSingleUser(password: User): Observable<any> {
-    return this.http.get(this.apiUrl + password);
-  }
+
   public createUser(user): Observable<any> {
-    return this.http.post(this.apiUrl +'/registration', user, httpOption);
+    return this.http.post(this.apiUrl + '/registration', user, httpOption);
+  }
+  public loginUser(user): Observable<any> {
+    return this.http.get(this.apiUrl + '/' + user.username + '/' + user.password, httpOption)
   }
 
 }
