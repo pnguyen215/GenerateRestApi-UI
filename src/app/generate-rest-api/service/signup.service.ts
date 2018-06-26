@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/Observable/of';
+import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Headers, RequestOptions } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common//http';
 import { environment } from '../../../environments/environment';
-import 'rxjs/add/operator/map';
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -28,7 +26,7 @@ export class SignupService {
   }
   public loginUser(username, password): Observable<any> {
     var data = "username=" + username + "&password=" + password + "&grant_type=password";
-    return this.http.post(this.apiUrl + '/token', data, httpOption);
+    return this.http.post(this.apiUrl + '/' + username, data, httpOption);
 
   }
 

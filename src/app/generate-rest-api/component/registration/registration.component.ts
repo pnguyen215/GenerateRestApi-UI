@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SignupService } from '../../service/signup.service';
 import { MessageObject } from '../../model/MessageObject';
 import { NgForm } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -33,16 +34,23 @@ export class RegistrationComponent implements OnInit {
     this.signupService.createUser(form.value)
       .subscribe((data: any) => {
         const res = data as MessageObject;
-        if (res) {
-          alert("Account available: " + res.data)
+        if (res.data.endsWith('characters!')) {
+          alert(res.data)
+          this.resetForm(form);
+          this._route.navigate(['/registration']);
+        } else if (res.data.endsWith('password!')) {
+          alert(res.data)
+          this.resetForm(form);
+          this._route.navigate(['/registration']);
+        } else {
+          alert(res.data);
           this.resetForm(form);
           this._route.navigate(['/login']);
         }
-        else {
+      },
+        (err: HttpErrorResponse) => {
           alert("Technical issue")
-
-        }
-      });
+        });
   }
 }
 
