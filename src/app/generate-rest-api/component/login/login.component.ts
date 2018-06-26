@@ -3,13 +3,17 @@ import { SignupService } from '../../service/signup.service';
 import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import { MessageObject } from '../../model/MessageObject';
+import { HttpErrorResponse } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  user: User = new User();
+  isLoginError: boolean = false;
+
   constructor(
     private router: Router, private signupService: SignupService,
     private _route: Router
@@ -18,24 +22,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   };
-  onloginSubmit(): void {
-    const user: User = new User();
-    // if (!user.username || !user.password) {
-    //   alert("Username and Password must be not blank!");
-    //   return;
-    // }
-    this.signupService.loginUser(this.user)
+  onloginSubmit(userName, password) {
+
+
+    this.signupService.loginUser(userName, password)
       .subscribe(data => {
         const res = data as MessageObject;
         if (res) {
-          alert("Login Successfully!  " + res.data)
+          alert(res.data);
+          localStorage.setItem('userToken', data.access_token);
           this._route.navigate(['/summary']);
         }
-        else {
-          alert("Login Failed! Please, try it again! " + res.data)
-          this._route.navigate(['/login']);
-        }
-      });
+      },
+        (err: HttpErrorResponse) => {
+          this.isLoginError = true;
+        });
   }
 
 }

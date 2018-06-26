@@ -3,42 +3,43 @@
 </h1>
 <div class="container-fluid">
 
-  <form>
+  <form #userRegistrationForm="ngForm" (ngSubmit)="createUser(userRegistrationForm)">
     <!-- Username -->
-    <div class="row">
+    <div class="input-field row">
       <div class="top-label col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <label>Username: </label>
+        <label data-error="Required field!">Username: </label>
       </div>
       <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input type="text" [(ngModel)]="user.username" name="username" placeholder="Enter username..." required>
+        <input class="validate" type="text" #userName="ngModel" [(ngModel)]="user.username" name="username" placeholder="Enter username..."
+          required>
       </div>
     </div>
     <br>
     <!-- Password -->
-    <div class="row">
+    <div class="input-field row">
       <div class="top-label col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
         <label>Password: </label>
       </div>
       <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input type="password" [(ngModel)]="user.password" name="password" placeholder="Enter password..." required>
+        <input class="validate" type="password" #password="ngModel" [(ngModel)]="user.password" name="password" placeholder="Enter password..."
+          required minlength="8">
       </div>
     </div>
     <br>
     <!-- Re-Password -->
-    <div class="row">
+    <div class="input-field row">
       <div class="top-label col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
         <label>Confirm-password: </label>
       </div>
       <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input type="password"  placeholder="Enter re-password..." name="repassword"
-          required>
+        <input class="validate" type="password" placeholder="Enter re-password..." name="repassword" requiredminlength="8">
       </div>
     </div>
     <br>
     <!-- Login -->
     <div id="bottom-container" class="row">
       <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input (click)="createUser()" type="submit" value="Sign Up">
+        <input [disabled]="!userRegistrationForm.valid" type="submit" value="Submit">
       </div>
     </div>
     <div id="bottom-container" class="row">

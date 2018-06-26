@@ -19,11 +19,17 @@ export class SignupService {
     private http: HttpClient
   ) { }
 
-  public createUser(user): Observable<any> {
-    return this.http.post(this.apiUrl + '/registration', user, httpOption);
+  public createUser(user: User): Observable<any> {
+    const body: User = {
+      username: user.username,
+      password: user.password
+    }
+    return this.http.post(this.apiUrl + '/registration', body, httpOption);
   }
-  public loginUser(user): Observable<any> {
-    return this.http.get(this.apiUrl + '/' + user.username + '/' + user.password, httpOption)
+  public loginUser(username, password): Observable<any> {
+    var data = "username=" + username + "&password=" + password + "&grant_type=password";
+    return this.http.post(this.apiUrl + '/token', data, httpOption);
+
   }
 
 }
