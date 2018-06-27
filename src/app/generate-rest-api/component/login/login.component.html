@@ -1,5 +1,5 @@
 <h1>
-  Login Form
+  Login
 </h1>
 <div *ngIf="isLoginError" class="red-text center error-message">
   <i class="material-icons">Error</i> incorrect username or password!
@@ -9,21 +9,18 @@
   <form #loginForm="ngForm" (ngSubmit)="onloginSubmit(userName.value,password.value)">
     <!-- Username -->
     <div class="row">
-      <div class="top-label col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 padding-none">
         <label>Username: </label>
-      </div>
-      <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input type="text" #userName ngModel name="userName" placeholder="Enter username..." required>
+        <br>
+        <input class="inputField" type="text" #userName ngModel name="userName" placeholder="Enter username..." required>
       </div>
     </div>
     <br>
     <!-- Password -->
     <div class="row">
-      <div class="top-label col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
+      <div class=" col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 padding-none">
         <label>Password: </label>
-      </div>
-      <div class="top-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <input type="password" #password ngModel name="password" placeholder="Enter password..." required>
+        <input class="inputField" type="password" #password ngModel name="password" placeholder="Enter password..." required>
       </div>
     </div>
     <br>

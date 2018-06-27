@@ -6,6 +6,7 @@ import { MessageObject } from '../../model/MessageObject';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -33,24 +34,23 @@ export class RegistrationComponent implements OnInit {
 
     this.signupService.createUser(form.value)
       .subscribe((data: any) => {
-        const res = data as MessageObject;
-        if (res.data.endsWith('characters!')) {
-          alert(res.data)
+        const requestMessages = data as MessageObject;
+        if (requestMessages.data.endsWith("characters!")) {
+          alert(requestMessages.data)
           this.resetForm(form);
           this._route.navigate(['/registration']);
-        } else if (res.data.endsWith('password!')) {
-          alert(res.data)
+        } else if (requestMessages.data.endsWith("blank!")) {
+          alert(requestMessages.data)
           this.resetForm(form);
           this._route.navigate(['/registration']);
         } else {
-          alert(res.data);
+          alert(requestMessages.data)
           this.resetForm(form);
           this._route.navigate(['/login']);
         }
-      },
-        (err: HttpErrorResponse) => {
-          alert("Technical issue")
-        });
+      }
+      
+    );
   }
 }
 

@@ -1,55 +1,84 @@
-$top : 5px;
-$des : 10px 10px 10px 10px;
-$font_ch : 17px;
-$bg :  #4CAF50;
-$border_color: 1px solid grey;
+$marginTop: 5px;
+$padding_format: 10px 10px 10px 10px;
+$words_format: 17px;
+$backgroundColor: #4CAF50;
+$borderColor: 1px solid grey;
+
 * {
   box-sizing: border-box;
 }
-.container-fluid{
+
+.container-fluid {
   position: relative;
 }
+
 input {
-border: none;
-width: 100%;
+  border: none;
+  width: 100%;
 }
-.top-container {
-  border: $border_color;
-  font-size: $font_ch;
-  padding: $des;
-  margin-top: $top;
+
+.inputField {
+  border: $borderColor;
+  font-size: $words_format;
+  padding: $padding_format;
+  margin-top: $marginTop;
   border-radius: 10px;
+
+  &:focus {
+    outline: 0;
+  }
+
 }
 
-.top-label{
-  margin-top: $top;
+.top-container {
+  border: $borderColor;
+  font-size: $words_format;
+  padding: $padding_format;
+  margin-top: $marginTop;
+  border-radius: 10px;
+
+  &:focus {
+    outline: 0;
+  }
+
+}
+
+.padding-none {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.top-label {
+  margin-top: $marginTop;
   margin-bottom: 2px;
-  font-size: $font_ch;
+  font-size: $words_format;
 }
 
-#bottom-container{
+#bottom-container {
   text-align: center;
 }
 
-input[type=submit]{
-  background-color: $bg ;
+input[type=submit] {
+  background-color: $backgroundColor;
   color: white;
   cursor: pointer;
 }
 
-#bottom-container .top-container{
-  background-color: $bg ;
+#bottom-container .top-container {
+  background-color: $backgroundColor;
   border: none;
   cursor: pointer;
-  &:hover
-  {
-    background-color:$bg ;
+
+  &:hover {
+    background-color: $backgroundColor;
     border: none;
     opacity: 1;
     box-shadow: 2px 2px 2px 2px #45a049;
     cursor: pointer;
   }
+
 }
+
 .row .bottom {
   background-color: #666;
   border-radius: 10px;
@@ -61,27 +90,30 @@ input[type=submit]{
 
 .bottom a {
   color: antiquewhite;
-  font-size: $font_ch;
+  font-size: $words_format;
   cursor: hand;
 }
 
 h1 {
-	color: #369;
-	font-size: 250%;
-	h2, h3{
-		color: #444;
-		font-weight: lighter;
+  color: #369;
+  font-size: 250%;
 
-	}
+  h2, h3 {
+    color: #444;
+    font-weight: lighter;
+  }
+
 }
 
 body, input[text], button {
   color: #888;
 }
+
 a {
   cursor: pointer;
   cursor: hand;
 }
+
 button {
   background-color: #eee;
   border: none;
@@ -89,17 +121,20 @@ button {
   border-radius: 4px;
   cursor: pointer;
   cursor: hand;
-  &:hover{
+
+  &:hover {
     background-color: #cfd8dc;
   }
-  &:disabled{
+
+  &:disabled {
     background-color: #eee;
     color: #aaa;
     cursor: auto;
   }
+
 }
 
-nav a{
+nav a {
   padding: 5px 10px;
   text-decoration: none;
   margin-right: 10px;
@@ -107,19 +142,22 @@ nav a{
   display: inline-block;
   background-color: #eee;
   border-radius: 4px;
-	&:visited, &:link{
-		color: #607D8B;
-	}
-	&:hover{
-		color: #039be5;
-		background-color: #CFD8DC;
+
+  &:visited, &:link {
+    color: #607D8B;
   }
-  .active{
+
+  &:hover {
+    color: #039be5;
+    background-color: #CFD8DC;
+  }
+
+  .active {
     color: #039be5;
   }
+
 }
 
 * {
   font-family: 'Times New Roman', Times, serif;
 }
-

@@ -4,6 +4,7 @@ import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import { MessageObject } from '../../model/MessageObject';
 import { HttpErrorResponse } from '@angular/common/http';
+import { all } from 'q';
 
 
 @Component({
@@ -27,16 +28,31 @@ export class LoginComponent implements OnInit {
 
     this.signupService.loginUser(userName, password)
       .subscribe(data => {
-        const res = data as MessageObject;
-        if (res) {
-          alert(res.data);
+        const requestMessages = data as MessageObject;
+        if (requestMessages.data.endsWith("Password!")) {
+          alert(requestMessages.data);
+          alert("Please! Try it again.")
+          this._route.navigate(['/login']);
+        } else if (requestMessages.data.endsWith("Password")) {
+          alert(requestMessages.data);
+          alert("Please! Try it again.")
+          this._route.navigate(['/login']);
+        } else if (requestMessages.data.endsWith("Username")) {
+          alert(requestMessages.data);
+          alert("Please! Try it again.")
+          this._route.navigate(['/login']);
+        }
+        else {
+          alert(requestMessages.data);
           localStorage.setItem('userToken', data.access_token);
           this._route.navigate(['/summary']);
         }
       },
         (err: HttpErrorResponse) => {
           this.isLoginError = true;
-        });
+        }
+      );
   }
+
 
 }
