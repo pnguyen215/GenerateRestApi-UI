@@ -1,11 +1,12 @@
-<h1>
-  Login
-</h1>
+
 <div *ngIf="isLoginError" class="red-text center error-message">
   <i class="material-icons">Error</i> incorrect username or password!
 </div>
+<h1>
+  Login
+</h1>
 <div class="container-fluid">
-
+  
   <form #loginForm="ngForm" (ngSubmit)="onloginSubmit(userName.value,password.value)">
     <!-- Username -->
     <div class="row">

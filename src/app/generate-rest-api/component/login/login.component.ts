@@ -4,7 +4,6 @@ import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import { MessageObject } from '../../model/MessageObject';
 import { HttpErrorResponse } from '@angular/common/http';
-import { all } from 'q';
 
 
 @Component({
