@@ -4,7 +4,7 @@ import { User } from '../../model/user';
 import { Router } from '@angular/router';
 import { MessageObject } from '../../model/MessageObject';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +12,37 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  isLoginError: boolean = false;
-
+  user: User;
   constructor(
     private router: Router, private signupService: SignupService,
     private _route: Router
   ) { }
 
   ngOnInit() {
-
+    this.resetForm();
   };
+
+  resetForm(form?: NgForm) {
+    if (form != null) {
+      form.reset();
+    }
+    this.user = {
+      username: '',
+      password: ''
+    }
+  }
+
   onloginSubmit(userName, password) {
 
 
     this.signupService.loginUser(userName, password)
       .subscribe(data => {
         const requestMessages = data as MessageObject;
-        if (requestMessages.data.endsWith("Password!")) {
+        if (requestMessages.data.endsWith("Username")) {
+          alert(requestMessages.data);
+          alert("Please! Try it again.")
+          this._route.navigate(['/login']);
+        } else if (requestMessages.data.endsWith("Password!")) {
           alert(requestMessages.data);
           alert("Please! Try it again.")
           this._route.navigate(['/login']);
@@ -36,19 +50,15 @@ export class LoginComponent implements OnInit {
           alert(requestMessages.data);
           alert("Please! Try it again.")
           this._route.navigate(['/login']);
-        } else if (requestMessages.data.endsWith("Username")) {
-          alert(requestMessages.data);
-          alert("Please! Try it again.")
-          this._route.navigate(['/login']);
         }
         else {
           alert(requestMessages.data);
-          localStorage.setItem('userToken', data.access_token);
           this._route.navigate(['/summary']);
         }
       },
         (err: HttpErrorResponse) => {
-          this.isLoginError = true;
+          this.resetForm();
+          alert('Technical Issue');
         }
       );
   }

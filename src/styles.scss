@@ -7,6 +7,7 @@ $borderColor: 1px solid grey;
 
 * {
   box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .container-fluid {
@@ -27,6 +28,7 @@ input {
 
   &:focus {
     outline: 0;
+    border: 2px solid dodgerblue;
   }
 
 }
@@ -95,17 +97,6 @@ input[type=submit] {
   cursor: hand;
 }
 
-h1 {
-  color: #369;
-  font-size: 250%;
-
-  h2, h3 {
-    color: #444;
-    font-weight: lighter;
-  }
-
-}
-
 body, input[text], button {
   color: #888;
 }
@@ -158,7 +149,8 @@ nav a {
   }
 
 }
-
-* {
-  font-family: 'Times New Roman', Times, serif;
+input[type=submit]{
+  &:focus{
+    outline: 0;
+  }
 }

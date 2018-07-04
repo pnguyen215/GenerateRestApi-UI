@@ -1,19 +1,14 @@
-
-<div *ngIf="isLoginError" class="red-text center error-message">
-  <i class="material-icons">Error</i> incorrect username or password!
-</div>
 <h1>
   Login
 </h1>
 <div class="container-fluid">
-  
   <form #loginForm="ngForm" (ngSubmit)="onloginSubmit(userName.value,password.value)">
     <!-- Username -->
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 padding-none">
+      <div class=" col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 padding-none">
         <label>Username: </label>
         <br>
-        <input class="inputField" type="text" #userName ngModel name="userName" placeholder="Enter username..." required>
+        <input class="inputField " type="text" #userName ngModel name="userName" placeholder="Enter username..." required>
       </div>
     </div>
     <br>
