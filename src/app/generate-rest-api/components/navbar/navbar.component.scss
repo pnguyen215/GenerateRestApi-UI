@@ -1,0 +1,30 @@
+$size: 50px;
+
+ul li h2 {
+  color: #369;
+}
+
+button.dropdown-toggle.dropdownButton {
+  background: url(https://png.icons8.com/color/50/000000/administrator-male.png) no-repeat;
+  height: $size - 15px;
+  width: $size - 15px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background-color: #4888A7;
+  background-size: 100% 100%;
+}
+
+a.logo {
+  background: url(https://png.icons8.com/ios/50/000000/api-settings.png) no-repeat;
+  height: $size;
+  width: $size;
+}
+
+ul.dropdown-menu li a {
+  &:hover {
+    background-color: #87C540;
+  }
+
+}
+
+

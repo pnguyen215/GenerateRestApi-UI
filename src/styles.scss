@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $marginTop: 5px;
-$padding_format: 10px 10px 10px 10px;
-$words_format: 17px;
+$paddingFormat: 10px 10px 10px 10px;
+$wordsFormat: 17px;
 $backgroundColor: #4CAF50;
 $borderColor: 1px solid grey;
 
@@ -21,8 +21,8 @@ input {
 
 .inputField {
   border: $borderColor;
-  font-size: $words_format;
-  padding: $padding_format;
+  font-size: $wordsFormat;
+  padding: $paddingFormat;
   margin-top: $marginTop;
   border-radius: 10px;
 
@@ -35,8 +35,8 @@ input {
 
 .top-container {
   border: $borderColor;
-  font-size: $words_format;
-  padding: $padding_format;
+  font-size: $wordsFormat;
+  padding: $paddingFormat;
   margin-top: $marginTop;
   border-radius: 10px;
 
@@ -54,7 +54,7 @@ input {
 .top-label {
   margin-top: $marginTop;
   margin-bottom: 2px;
-  font-size: $words_format;
+  font-size: $wordsFormat;
 }
 
 #bottom-container {
@@ -93,7 +93,7 @@ input[type=submit] {
 
 .bottom a {
   color: antiquewhite;
-  font-size: $words_format;
+  font-size: $wordsFormat;
   cursor: hand;
 }
 
@@ -126,6 +126,13 @@ button {
 
 }
 
+input[type=submit] {
+  &:focus {
+    outline: 0;
+  }
+
+}
+
 nav a {
   padding: 5px 10px;
   text-decoration: none;
@@ -148,9 +155,4 @@ nav a {
     color: #039be5;
   }
 
-}
-input[type=submit]{
-  &:focus{
-    outline: 0;
-  }
 }
