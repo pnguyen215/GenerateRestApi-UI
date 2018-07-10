@@ -16,6 +16,8 @@ import { ProfileComponent } from './generate-rest-api/components/profile/profile
 import { AuthService } from './generate-rest-api/service/auth.service';
 import { AlertComponent } from './generate-rest-api/components/alert/alert.component';
 import { AlertService } from './generate-rest-api/service/alert.service';
+import { FaderComponent } from './generate-rest-api/components/fader/fader.component';
+import { AuthGuard } from './generate-rest-api/auth/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { AlertService } from './generate-rest-api/service/alert.service';
     HomeComponent,
     ProfileComponent,
     AlertComponent,
+    FaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { AlertService } from './generate-rest-api/service/alert.service';
     HttpClientModule,
 
   ],
-  providers: [SignupService, AuthService, AlertService],
+  providers: [SignupService, AuthService, AlertService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

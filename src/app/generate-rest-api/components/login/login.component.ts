@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SignupService } from '../../service/signup.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { MessageObject } from '../../models/MessageObject';
 import { AlertService } from '../../service/alert.service';
+import { delay } from 'q';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +16,16 @@ import { AlertService } from '../../service/alert.service';
 })
 export class LoginComponent implements OnInit {
   user: User;
+  form;
   constructor(
-    private router: Router, private signupService: SignupService,
+    private signupService: SignupService,
     private _route: Router,
-    private alertService: AlertService
-  ) { }
+    private alertService: AlertService,
+    private auth: AuthService,
+
+  ) {
+
+  }
 
   ngOnInit() {
     this.resetForm();
@@ -36,26 +43,32 @@ export class LoginComponent implements OnInit {
 
   onloginSubmit(userName, password) {
 
+    // this.auth.sendToken(this.form.value.username);
+    // // this._route.navigate(['/home']);
 
     this.signupService.loginUser(userName, password)
       .subscribe(data => {
         const requestMessages = data as MessageObject;
         if (requestMessages.data.endsWith("Username")) {
-          this.resetForm();
           this.alertService.error(requestMessages.data);
+          this.resetForm();
           this._route.navigate(['/login']);
         } else if (requestMessages.data.endsWith("Password!")) {
-          this.resetForm();
           this.alertService.error(requestMessages.data);
+          this.resetForm();
           this._route.navigate(['/login']);
         } else if (requestMessages.data.endsWith("Password")) {
-          this.resetForm();
           this.alertService.error(requestMessages.data);
+          this.resetForm();
           this._route.navigate(['/login']);
-        }
-        else {
+        } else if (requestMessages.data.endsWith("exist!")) {
+          this.alertService.error(requestMessages.data);
+          this.resetForm();
+          this._route.navigate(['/login']);
+        } else {
           this.alertService.success(requestMessages.data);
           this._route.navigate(['/home']);
+          this.auth.sendToken(userName);
         }
       },
         (error: HttpErrorResponse) => {
@@ -67,3 +80,5 @@ export class LoginComponent implements OnInit {
 
 
 }
+
+

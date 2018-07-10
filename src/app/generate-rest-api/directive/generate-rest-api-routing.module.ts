@@ -10,11 +10,11 @@ import { HomeComponent } from '../components/home/home.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,  },
+  { path: '', component: HomeComponent,pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, },
   { path: 'registration', component: RegistrationComponent },
   { path: 'summary', component: SummaryComponent, },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
 ]

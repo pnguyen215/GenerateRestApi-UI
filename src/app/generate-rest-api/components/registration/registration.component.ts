@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user';
 import { MessageObject } from '../../models/MessageObject';
 import { AlertService } from '../../service/alert.service';
+import { delay } from 'q';
 
 
 @Component({
@@ -32,35 +33,41 @@ export class RegistrationComponent implements OnInit {
       password: ''
     }
   }
-  createUser(form: NgForm) {
 
-    this.signupService.createUser(form.value)
-      .subscribe((data: any) => {
-        const requestMessages = data as MessageObject;
-        if (requestMessages.data.endsWith("characters!")) {
-          this.alertService.error(requestMessages.data);
-          this.resetForm(form);
-          this._route.navigate(['/registration']);
-        } else if (requestMessages.data.endsWith("blank!")) {
-          this.alertService.error(requestMessages.data);
-          this.resetForm(form);
-          this._route.navigate(['/registration']);
-        } else if (requestMessages.data.endsWith("unique!")) {
-          this.alertService.error(requestMessages.data);
-          this.resetForm(form);
-          this._route.navigate(['/registration']);
-        } else {
-          this.alertService.success(requestMessages.data);
-          this.resetForm(form);
-          this._route.navigate(['/login']);
-        }
-      },
-        (err: HttpErrorResponse) => {
-          this.resetForm();
-          alert('Technical Issue');
-        }
+  createUser(form: NgForm, password, repassword) {
+    if (repassword != password) {
+      this.alertService.error("Requirement confirm password correctly!");
+      return ;
+    } else {
+      this.signupService.createUser(form.value)
+        .subscribe((data: any) => {
+          const requestMessages = data as MessageObject;
+          if (requestMessages.data.endsWith("characters!")) {
+            this.alertService.error(requestMessages.data);
+            this.resetForm(form);
+            this._route.navigate(['/registration']);
+          } else if (requestMessages.data.endsWith("blank!")) {
+            this.alertService.error(requestMessages.data);
+            this.resetForm(form);
+            this._route.navigate(['/registration']);
+          } else if (requestMessages.data.endsWith("unique!")) {
+            this.alertService.error(requestMessages.data);
+            this.resetForm(form);
+            this._route.navigate(['/registration']);
+          } else {
+            this.alertService.success(requestMessages.data);
+            this.resetForm(form);
+            this._route.navigate(['/login']);
+          }
+        },
+          (err: HttpErrorResponse) => {
+            this.resetForm();
+            alert('Technical Issue');
+          }
 
-      );
+        );
+    }
+
   }
 }
 

@@ -8,8 +8,9 @@ import { AlertService } from '../../service/alert.service';
 })
 export class AlertComponent implements OnInit {
   message: any;
+  constructor(private alertService: AlertService) {
 
-  constructor(private alertService: AlertService) { }
+   }
 
   ngOnInit() {
     this.alertService.getMessage().subscribe(message => {
