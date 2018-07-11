@@ -28,9 +28,10 @@
         <ul class="nav navbar-nav navbar-right setImageButton">
           <button class="dropdown-toggle dropdownButton" type="button" data-toggle="dropdown">
           </button>
+          <p class="currentUser"> {{currentUser}} </p>
           <ul class="dropdown-menu">
             <li>
-              <a (click)="auth.logout()">Logout</a>
+              <a (click)="auth.logout();signupService.refresh()">Logout</a>
             </li>
             <li>
               <a routerLink="profile">Profile</a>

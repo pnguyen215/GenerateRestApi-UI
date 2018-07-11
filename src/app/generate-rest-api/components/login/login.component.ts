@@ -68,12 +68,13 @@ export class LoginComponent implements OnInit {
         } else {
           this.alertService.success(requestMessages.data);
           this._route.navigate(['/home']);
+          this.signupService.refresh();
           this.auth.sendToken(userName);
         }
       },
         (error: HttpErrorResponse) => {
           this.resetForm();
-          alert('Technical Issue');
+          this.alertService.error('Technical Issue');
         }
       );
   }

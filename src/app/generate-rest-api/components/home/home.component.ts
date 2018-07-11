@@ -10,13 +10,13 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  currentUser: User;
+  currentUser = this.auth.getToken();
   users: User[] = [];
   constructor(
     private userService: SignupService,
     private auth: AuthService
   ) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
   }
 
   ngOnInit() {

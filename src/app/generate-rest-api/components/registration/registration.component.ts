@@ -57,12 +57,13 @@ export class RegistrationComponent implements OnInit {
           } else {
             this.alertService.success(requestMessages.data);
             this.resetForm(form);
+            this.signupService.refresh();
             this._route.navigate(['/login']);
           }
         },
           (err: HttpErrorResponse) => {
             this.resetForm();
-            alert('Technical Issue');
+            this.alertService.error('Technical Issue');
           }
 
         );

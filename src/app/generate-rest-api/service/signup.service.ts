@@ -18,6 +18,10 @@ export class SignupService {
     private http: HttpClient
   ) { }
 
+  public refresh(): void{
+    window.location.reload();
+  }
+
   public getAll(): Observable<any> {
     const url = `${apiUrl}/`;
     return this.http.get<User[]>(url, httpOption);
