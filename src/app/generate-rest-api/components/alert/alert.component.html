@@ -1,3 +1,4 @@
 <div class="animated fadeOut" *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
   {{message.text}}
+  <a class="close" (click)="clearAlert()">&times;</a>
 </div>

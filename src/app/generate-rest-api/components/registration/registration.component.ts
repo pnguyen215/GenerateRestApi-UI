@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
       form.reset();
     }
     this.user = {
+      id: '',
       username: '',
       password: ''
     }

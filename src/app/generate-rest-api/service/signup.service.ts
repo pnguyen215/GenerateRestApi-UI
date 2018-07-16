@@ -7,18 +7,22 @@ import { HttpClient, HttpHeaders } from '@angular/common//http';
 import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
+import "rxjs/add/observable/of";
+import { LocalStorageServiceService } from './local-storage-service.service';
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 const apiUrl = environment.serverURL + "v1/user";
 @Injectable()
 export class SignupService {
-
+  private localStorageService: LocalStorageServiceService
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
 
-  public refresh(): void{
+  ) {
+  }
+
+  public refresh(): void {
     window.location.reload();
   }
 
@@ -30,6 +34,7 @@ export class SignupService {
   public createUser(user: User): Observable<any> {
     const url = `${apiUrl}/registration`;
     const body: User = {
+      id: user.id,
       username: user.username,
       password: user.password
     }
@@ -38,17 +43,19 @@ export class SignupService {
 
   public loginUser(username, password): Observable<any> {
     const url = `${apiUrl}/${username}`;
-    const loginBody: User = {
+    var loginBody = {
+      id: (new Date()).getTime(),
       username: username,
       password: password
     }
+
     return this.http.post(url, loginBody, httpOption);
 
   }
 
   public deleteCurrentUser(username: String): Observable<any> {
     const url = `${apiUrl}/${username}`;
-    return this.http.delete(url);
+    return  this.http.delete(url);
   }
 
 }

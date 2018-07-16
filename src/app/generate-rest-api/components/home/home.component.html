@@ -1,5 +1,5 @@
 <div class="cod-md-6 col-md-offset-3">
-  <h1>Hi {{currentUser}} !</h1>
+  <h1>Hi {{checkCurrentUser()}} !</h1>
   <p>You're logged in my System API!</p>
   <h3>All registered users: </h3>
   <ul>
@@ -9,7 +9,7 @@
     </li>
   </ul>
   <p>
-    <button *ngIf="auth.isLoggednIn()" (click)="auth.logout()" >
+    <button *ngIf="auth.isLoggednIn()" (click)="auth.logout(); userService.refresh()" >
       Logout
     </button>
   </p>

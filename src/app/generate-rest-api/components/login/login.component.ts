@@ -36,16 +36,13 @@ export class LoginComponent implements OnInit {
       form.reset();
     }
     this.user = {
+      id: '',
       username: '',
       password: ''
     }
   }
 
   onloginSubmit(userName, password) {
-
-    // this.auth.sendToken(this.form.value.username);
-    // // this._route.navigate(['/home']);
-
     this.signupService.loginUser(userName, password)
       .subscribe(data => {
         const requestMessages = data as MessageObject;
@@ -69,7 +66,9 @@ export class LoginComponent implements OnInit {
           this.alertService.success(requestMessages.data);
           this._route.navigate(['/home']);
           this.signupService.refresh();
+          this.auth.setCookie("currentUser", userName, 1);
           this.auth.sendToken(userName);
+          
         }
       },
         (error: HttpErrorResponse) => {

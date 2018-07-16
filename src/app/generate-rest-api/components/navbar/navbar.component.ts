@@ -8,13 +8,22 @@ import { SignupService } from '../../service/signup.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  currentUser = this.auth.getToken();
+  currentUser: any;
+  checkCurrentUser(){
+    var user = this.auth.getCookie("currentUser");
+    if(user != ""){
+      return this.currentUser = this.auth.getCookie("currentUser");
+    }else{
+      return this.currentUser = "";
+    }
+  }
   constructor(
     private auth: AuthService,
-    private signupService: SignupService,) { }
+    private signupService: SignupService, ) { }
 
   ngOnInit() {
+
   }
+
 
 }

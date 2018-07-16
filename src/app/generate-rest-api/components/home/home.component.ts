@@ -10,11 +10,20 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  currentUser = this.auth.getToken();
+  currentUser: any;
+  checkCurrentUser(){
+    var user = this.auth.getCookie("currentUser");
+    if(user != ""){
+      this.currentUser = this.auth.getCookie("currentUser");
+      return this.currentUser;
+    }else{
+      return this.currentUser = "";
+    }
+  }
   users: User[] = [];
   constructor(
     private userService: SignupService,
-    private auth: AuthService
+    private auth: AuthService,
   ) {
 
   }

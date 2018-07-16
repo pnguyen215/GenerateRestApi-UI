@@ -10,7 +10,7 @@ export class AlertComponent implements OnInit {
   message: any;
   constructor(private alertService: AlertService) {
 
-   }
+  }
 
   ngOnInit() {
     this.alertService.getMessage().subscribe(message => {
@@ -18,4 +18,7 @@ export class AlertComponent implements OnInit {
     })
   }
 
+  clearAlert(): void {
+    this.alertService.clearAlert();
+  }
 }
