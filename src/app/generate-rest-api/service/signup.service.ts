@@ -31,6 +31,7 @@ export class SignupService {
     return this.http.get<User[]>(url, httpOption);
   }
 
+
   public createUser(user: User): Observable<any> {
     const url = `${apiUrl}/registration`;
     const body: User = {
@@ -55,7 +56,7 @@ export class SignupService {
 
   public deleteCurrentUser(username: String): Observable<any> {
     const url = `${apiUrl}/${username}`;
-    return  this.http.delete(url);
+    return this.http.delete(url);
   }
 
 }

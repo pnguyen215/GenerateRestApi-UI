@@ -18,7 +18,7 @@ export class AuthService {
       id: (new Date).getTime(),
       name: token,
     }
-    localStorage.setItem('currentUser', JSON.stringify(myObject));
+    localStorage.setItem('currentUser', JSON.stringify(myObject.id));
   }
 
   getToken() {

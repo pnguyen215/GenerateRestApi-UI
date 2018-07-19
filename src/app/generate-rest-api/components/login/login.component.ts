@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   onloginSubmit(userName, password) {
+    userName = userName.trim();
     this.signupService.loginUser(userName, password)
       .subscribe(data => {
         const requestMessages = data as MessageObject;

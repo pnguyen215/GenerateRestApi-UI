@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { SignupService } from '../../service/signup.service';
 import { AuthService } from '../../service/auth.service';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { PagerService } from '../../service/pager.service';
 
 @Component({
   moduleId: module.id.toString(),
@@ -11,12 +13,12 @@ import { AuthService } from '../../service/auth.service';
 })
 export class HomeComponent implements OnInit {
   currentUser: any;
-  checkCurrentUser(){
+  checkCurrentUser() {
     var user = this.auth.getCookie("currentUser");
-    if(user != ""){
+    if (user != "") {
       this.currentUser = this.auth.getCookie("currentUser");
       return this.currentUser;
-    }else{
+    } else {
       return this.currentUser = "";
     }
   }
@@ -24,12 +26,15 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: SignupService,
     private auth: AuthService,
+    private http: Http,
+    private pagerService: PagerService
   ) {
 
   }
 
   ngOnInit() {
     this.loadAllUsers();
+
   }
 
   deleteUser(username: String) {

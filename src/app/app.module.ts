@@ -18,6 +18,10 @@ import { AlertComponent } from './generate-rest-api/components/alert/alert.compo
 import { AlertService } from './generate-rest-api/service/alert.service';
 import { FaderComponent } from './generate-rest-api/components/fader/fader.component';
 import { AuthGuard } from './generate-rest-api/auth/guards/auth.guard';
+import { PaginationComponent } from './generate-rest-api/components/pagination/pagination.component';
+import { PagerService } from './generate-rest-api/service/pager.service';
+import { HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,18 +34,18 @@ import { AuthGuard } from './generate-rest-api/auth/guards/auth.guard';
     ProfileComponent,
     AlertComponent,
     FaderComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
     GenerateRestApiRoutingModule,
     GenerateRestApiModule,
     HttpClientModule,
-    BrowserModule,
     FormsModule,
-    HttpClientModule,
-
+    HttpModule, 
+    
   ],
-  providers: [SignupService, AuthService, AlertService, AuthGuard],
+  providers: [HttpClient, HttpModule, SignupService, AuthService, AlertService, AuthGuard, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

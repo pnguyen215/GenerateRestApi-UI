@@ -5,12 +5,16 @@
   <ul>
     <li *ngFor="let user of users">
       {{user.username}}
-      <!-- <a (click)="deleteUser(user.id)">Delete</a> -->
     </li>
   </ul>
+</div>
+<div class="footer">
+  <app-pagination></app-pagination>
+</div>
+<!-- <div>
   <p>
-    <button *ngIf="auth.isLoggednIn()" (click)="auth.logout(); userService.refresh()" >
+    <button *ngIf="auth.isLoggednIn()" (click)="auth.logout(); userService.refresh()">
       Logout
     </button>
   </p>
-</div>
+</div> -->
