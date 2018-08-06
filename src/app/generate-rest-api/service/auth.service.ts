@@ -1,18 +1,81 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LocalStorageServiceService } from './local-storage-service.service';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Subscription } from 'rxjs/Subscription'
+import 'rxjs/add/observable/timer';
+import 'rxjs/add/operator/throttleTime';
+import { IfObservable } from 'rxjs/observable/IfObservable';
+import { Observable } from 'rxjs/Observable';
+import firebase = require('firebase');
+
 
 @Injectable()
 export class AuthService {
 
+
+  mouseEvents: Subscription;
+  timer: Subscription;
+  userId: String;
   token: any;
   constructor(
     private myRoute: Router,
-
+    private afterAuth: AngularFireAuth,
+    private database: AngularFireDatabase
   ) {
-
+    this.afterAuth.authState
+      .do(user => {
+        if (user) {
+          this.userId = user.uid
+          this.updateOnConnect()
+          this.updateOnDisconnect()
+          this.updateOnIdle()
+        }
+      })
+      .subscribe();
   }
-
+  updateStatus(status: string) {
+    if (!this.userId)
+      return
+    this.database.object(`users` + this.userId).update({ status: status })
+  }
+  updateOnConnect() {
+    return this.database.object('/login')
+      .do(connected => {
+        let status = connected.$value ? 'online' : 'offline'
+        this.updateStatus(status)
+      })
+      .subscribe()
+  }
+  updateOnDisconnect() {
+    firebase.database().ref().child(`users/${this.userId}`)
+      .onDisconnect()
+      .update({ status: 'offline' })
+  }
+  updateOnIdle() {
+    this.mouseEvents = Observable
+      .fromEvent(document, 'mousemove')
+      .throttleTime(2000)
+      .do(() => {
+        this.updateStatus('online')
+        this.resetTimer()
+      })
+      .subscribe()
+  }
+  private resetTimer() {
+    if (this.timer) this.timer.unsubscribe()
+    this.timer = Observable.timer(5000)
+      .do(() => {
+        this.updateStatus('away')
+      })
+      .subscribe()
+  }
+  signOut() {
+    this.updateStatus('offline')
+    this.mouseEvents.unsubscribe()
+    this.timer.unsubscribe()
+    this.afterAuth.auth.signOut();
+  }
   sendToken(token: string) {
     var myObject = {
       id: (new Date).getTime(),

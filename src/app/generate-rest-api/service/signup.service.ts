@@ -8,14 +8,13 @@ import { environment } from '../../../environments/environment';
 import 'rxjs/add/operator/map';
 import { User } from '../models/user';
 import "rxjs/add/observable/of";
-import { LocalStorageServiceService } from './local-storage-service.service';
+
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = environment.serverURL + "v1/user";
+const apiUrl = environment.serverURL + "v1/restful";
 @Injectable()
 export class SignupService {
-  private localStorageService: LocalStorageServiceService
   constructor(
     private http: HttpClient,
 

@@ -5,5 +5,13 @@
 
 export const environment = {
   serverURL: 'http://localhost:8080/restController/',
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBtDOpvWeayILFzswffTmBRfSz17ai1sig",
+    authDomain: "approachangular5.firebaseapp.com",
+    databaseURL: "https://approachangular5.firebaseio.com",
+    projectId: "approachangular5",
+    storageBucket: "",
+    messagingSenderId: "674072710505"
+  }
 };

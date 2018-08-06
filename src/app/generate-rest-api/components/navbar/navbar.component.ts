@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   checkCurrentUser(){
     var user = this.auth.getCookie("currentUser");
     if(user != ""){
-      return this.currentUser = this.auth.getCookie("currentUser");
+      return this.currentUser = user;
     }else{
       return this.currentUser = "";
     }

@@ -29,6 +29,7 @@
           <button class="dropdown-toggle dropdownButton" type="button" data-toggle="dropdown">
           </button>
           <p class="currentUser"> {{checkCurrentUser()}} </p>
+          <!-- <app-user-status [status]="checkCurrentUser().status"></app-user-status> -->
           <ul class="dropdown-menu">
             <li>
               <a (click)="auth.logout();signupService.refresh()">Logout</a>

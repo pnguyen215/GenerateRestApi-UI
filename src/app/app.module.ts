@@ -22,6 +22,15 @@ import { PaginationComponent } from './generate-rest-api/components/pagination/p
 import { PagerService } from './generate-rest-api/service/pager.service';
 import { HttpModule } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { DashboardDetailsComponent } from './generate-rest-api/components/dashboard-details/dashboard-details.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { environment } from '../environments/environment';
+import { UserStatusComponent } from './generate-rest-api/components/user-status/user-status.component';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 
 @NgModule({
   declarations: [
@@ -35,6 +44,8 @@ import { HttpClient } from '@angular/common/http';
     AlertComponent,
     FaderComponent,
     PaginationComponent,
+    DashboardDetailsComponent,
+    UserStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,10 +53,11 @@ import { HttpClient } from '@angular/common/http';
     GenerateRestApiModule,
     HttpClientModule,
     FormsModule,
-    HttpModule, 
-    
+    HttpModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // for database
   ],
-  providers: [HttpClient, HttpModule, SignupService, AuthService, AlertService, AuthGuard, PagerService],
+  providers: [HttpClient, HttpModule, SignupService, AuthService, AlertService, AuthGuard, PagerService, AngularFireModule, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

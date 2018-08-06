@@ -3,8 +3,9 @@
   <p>You're logged in my System API!</p>
   <h3>All registered users: </h3>
   <ul>
-    <li *ngFor="let user of users">
+    <li *ngFor="let user of users ">
       {{user.username}}
+      <!-- <app-user-status [status]="user.status"></app-user-status> -->
     </li>
   </ul>
 </div>
