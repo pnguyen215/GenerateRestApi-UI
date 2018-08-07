@@ -12,7 +12,7 @@ import "rxjs/add/observable/of";
 const httpOption = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = environment.serverURL + "v1/restful";
+const apiUrl = environment.serverURL + "v1/user";
 @Injectable()
 export class SignupService {
   constructor(

@@ -16,7 +16,6 @@ import { ProfileComponent } from './generate-rest-api/components/profile/profile
 import { AuthService } from './generate-rest-api/service/auth.service';
 import { AlertComponent } from './generate-rest-api/components/alert/alert.component';
 import { AlertService } from './generate-rest-api/service/alert.service';
-import { FaderComponent } from './generate-rest-api/components/fader/fader.component';
 import { AuthGuard } from './generate-rest-api/auth/guards/auth.guard';
 import { PaginationComponent } from './generate-rest-api/components/pagination/pagination.component';
 import { PagerService } from './generate-rest-api/service/pager.service';
@@ -27,7 +26,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { environment } from '../environments/environment';
-import { UserStatusComponent } from './generate-rest-api/components/user-status/user-status.component';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -42,10 +40,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     HomeComponent,
     ProfileComponent,
     AlertComponent,
-    FaderComponent,
     PaginationComponent,
     DashboardDetailsComponent,
-    UserStatusComponent,
   ],
   imports: [
     BrowserModule,
